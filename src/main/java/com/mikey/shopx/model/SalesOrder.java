@@ -2,6 +2,8 @@ package com.mikey.shopx.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Table(name = "salesOrder")
 public class SalesOrder implements Serializable {
@@ -14,7 +16,7 @@ public class SalesOrder implements Serializable {
     @OneToOne
     private Cart cart;
 
-    @OneToMany
+    @ManyToOne
     Customer customer;
 
     @OneToOne
@@ -39,14 +41,6 @@ public class SalesOrder implements Serializable {
         this.cart = cart;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public ShippingAddress getShippingAddress() {
         return shippingAddress;
     }
@@ -61,5 +55,13 @@ public class SalesOrder implements Serializable {
 
     public void setBillingAddress(BillingAddress billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
