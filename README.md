@@ -1,5 +1,5 @@
 # DataSchema
-![Data schema](/images/DataSchema)
+![Data schema](/images/DataSchema.png)
 # Milestone
 Priority | Tasks
 -------- | -----
