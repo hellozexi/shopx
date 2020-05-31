@@ -19,4 +19,5 @@ p2 | Find a way to record metrics of the websites and write unit tests.
 3. Create a new table called 'ecommerce'
 4. After importing the project from github, you can start the server in intellij by simply click 'start button'. 
 5. If success, you will see this in your MAMP webpage:
+![Database](/images/Database review.png)
 
