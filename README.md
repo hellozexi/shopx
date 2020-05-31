@@ -1,4 +1,4 @@
-#Milestone
+# Milestone
 Priority | Tasks
 -------- | -----
 p1 | Finish the data schema part and build the related ecommerce database.
@@ -13,7 +13,7 @@ p2 | Find a way to record metrics of the websites and write unit tests.
 
 
 
-#Develop guide: 
+# Develop guide: 
 1. Clone this project to your local environment.(I personally prefer Intellij Ultimate version, other IDE will be fine if you are comfortable with)
 2. Doneload MAMP on your computer, doesn't need Pro version.(Once again, you can also use PHPAdmin and some other Database management tools if you want)
 3. Create a new table called 'ecommerce'
