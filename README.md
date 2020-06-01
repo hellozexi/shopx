@@ -13,7 +13,7 @@ p2 | Using react to build the front end webpage.
 p2 | Use docker to store the database and try to find a way to store the prod server and test server into different containers.
 p2 | Find a way to record metrics of the websites and write unit tests.
 
-tips: This website is very similar to amazon.com
+tip: This website is very similar to amazon.com
 
 
 # DevelopGuide: 
