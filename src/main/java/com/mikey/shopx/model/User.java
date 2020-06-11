@@ -14,9 +14,18 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    private String emailId;
+    private String email;
     private String password;
     private boolean enabled;
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public boolean isEnabled() {
         return enabled;
@@ -26,26 +35,26 @@ public class User implements Serializable {
     @JoinTable(name = "user_authorities",
     joinColumns = @JoinColumn(name = "userId"),
     inverseJoinColumns = @JoinColumn(name = "authorityId"))
-    private Set<Authorities> authorities = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
-    public Set<Authorities> getAuthorities() {
-        return authorities;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAuthorities(Set<Authorities> authorities) {
-        this.authorities = authorities;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
     }
 
     public String getPassword() {
