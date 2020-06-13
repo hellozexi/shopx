@@ -13,7 +13,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String email;
     private String password;
     private boolean enabled;
@@ -68,11 +68,11 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user")
     Customer customer;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
