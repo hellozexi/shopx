@@ -28,7 +28,7 @@ Download Postman on your local machine. Send POST requests to both URIs
   "password": "123456"  
 }  
 ```  
-## Signup /api/auth/sighup  
+## Signup /api/auth/signup  
 ### request body
 ```
 {  
