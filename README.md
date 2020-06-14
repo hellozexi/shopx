@@ -19,20 +19,22 @@ tip: This website is very similar to amazon.com
 # Authentication Backend
 Download Postman on your local machine. Send POST requests to both URIs
 ## Signin /api/auth/signin  
-    ```
-    {  
-      "usernameOrEmail" : "abc",  
-      "password": "123456"  
-    }  
-    ```  
+### request body
+```
+{  
+  "usernameOrEmail" : "abc",  
+  "password": "123456"  
+}  
+```  
 ## Signup /api/auth/sighup  
-    ```
-    {  
-      "username": "abc",  
-      "email": "abc@gmail.com",  
-      "password": "123456"  
-    }  
-    ```
+### request body
+```
+{  
+  "username": "abc",  
+  "email": "abc@gmail.com",  
+  "password": "123456"  
+}  
+```
 if successful, you will see response correct on your postman.  
 
 # Front end 
