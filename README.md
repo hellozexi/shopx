@@ -19,7 +19,6 @@ tip: This website is very similar to amazon.com
 # Authentication Backend
 Download Postman on your local machine. Send POST requests to both URIs
 ## 1. Signin /api/auth/signin  
-    ### requestbody 
     ```
     {  
       "usernameOrEmail" : "abc",  
@@ -27,7 +26,6 @@ Download Postman on your local machine. Send POST requests to both URIs
     }  
     ```  
 ## 2. Signup /api/auth/sighup  
-    ### requestbody 
     ```
     {  
       "username": "abc",  
