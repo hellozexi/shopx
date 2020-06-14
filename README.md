@@ -1,11 +1,9 @@
 # DataSchema
 ![Data schema](/images/DataSchema.png)
 # Milestone
-Priority | Tasks
--------- | -----
--[] p1 | Finish the data schema part and build the related ecommerce database.
--[] p1 | Finish the user login/registration. Spring security might be helpful. Finish the authorization part.
--[] p1 | List all the items on the main page. User can add some items into their cart.
+-[ ] p1 | Finish the data schema part and build the related ecommerce database.
+p1 | Finish the user login/registration. Spring security might be helpful. Finish the authorization part.
+p1 | List all the items on the main page. User can add some items into their cart.
 p1 | User can checkout their cart. Items will be listed in their cart. When checking out, they need to provide their information.
 p1 | User can post their product onto this website. Including some information of the product. eg. The description and the image...
 p2 | Set up a chat service for owner and customer to communicate with each other.
