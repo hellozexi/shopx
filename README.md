@@ -14,7 +14,6 @@
 - [ ] p2 | Find a way to record metrics of the websites and write unit tests.
 - [ ] p3 | Try to explore some cool features about React. eg. animation to make website more appealing to customers.
 
-tip: This website is very similar to amazon.com
 
 # Authentication Backend
 Download Postman on your local machine. Send POST requests to both URIs
