@@ -16,17 +16,6 @@
 
 tip: This website is very similar to amazon.com
 
-
-# DevelopGuide: 
-1. Clone this project to your local environment.(I personally prefer Intellij Ultimate version, other IDE will be fine if you are comfortable with)
-2. Download MAMP on your computer, doesn't need Pro version.(Once again, you can also use PHPAdmin and some other Database management tools if you want)
-3. Create a new table called 'ecommerce'
-4. After importing the project from github, you can start the server in intellij by simply click 'start button'. 
-5. If success, you will see this in your MAMP webpage:
-
-![Database](/images/DatabaseReview.png)
-
-
 # Authentication Backend
 Download Postman on your local machine. Send POST requests to both URIs
 1. Signin /api/auth/signin  
