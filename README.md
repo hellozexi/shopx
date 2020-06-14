@@ -18,14 +18,14 @@ tip: This website is very similar to amazon.com
 
 # Authentication Backend
 Download Postman on your local machine. Send POST requests to both URIs
-## 1. Signin /api/auth/signin  
+## Signin /api/auth/signin  
     ```
     {  
       "usernameOrEmail" : "abc",  
       "password": "123456"  
     }  
     ```  
-## 2. Signup /api/auth/sighup  
+## Signup /api/auth/sighup  
     ```
     {  
       "username": "abc",  
