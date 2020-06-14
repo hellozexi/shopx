@@ -15,7 +15,7 @@
 - [ ] p3 | Try to explore some cool features about React. eg. animation to make website more appealing to customers.
 - [ ] p3 | Enable search engine for the website. eg. Elasticsearch
 - [ ] p3 | Design the recommendation system or algorithm. Based on user's browsing behavior, give him/her related recommendations on product. eg. recommendation algorithms like famous item-item or user-user.
-- [ ] p3 | Deploy the website and try to make it into product.
+- [ ] p3 | Deploy the website and try to make it into production.
 
 
 # Authentication Backend
