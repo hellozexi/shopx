@@ -25,3 +25,17 @@ tip: This website is very similar to amazon.com
 
 ![Database](/images/DatabaseReview.png)
 
+# Authentication Backend
+Download Postman on your local machine. 
+1. Signin /api/auth/signin  
+    requestbody {
+      "usernameOrEmail" : "abc",
+      "password": "123456"
+    }
+2. Signup /api/auth/sighup
+    requestbody {
+      "username": "abc",
+      "email": "abc@gmail.com",
+      "password": "123456"
+    }
+if successful, you will see response correct on your postman.
