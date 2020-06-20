@@ -4,6 +4,7 @@ package com.mikey.shopx.config;
 import com.mikey.shopx.Security.CustomUserDetailService;
 import com.mikey.shopx.Security.JwtAuthenticationEntryPoint;
 import com.mikey.shopx.Security.JwtAuthenticationFilter;
+import com.mikey.shopx.model.RoleName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

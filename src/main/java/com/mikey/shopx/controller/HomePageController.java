@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomePageController {
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping("/index")
     public String sayIndex() {
         return "index";
     }
-    @RequestMapping(value = "/aboutus", method = RequestMethod.GET)
+    @RequestMapping("/about")
     public String sayAbout() {
         return "about";
     }
