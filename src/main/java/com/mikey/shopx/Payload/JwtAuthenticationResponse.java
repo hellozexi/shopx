@@ -1,4 +1,4 @@
-package Payload;
+package com.mikey.shopx.Payload;
 
 public class JwtAuthenticationResponse {
     private String accessToken;

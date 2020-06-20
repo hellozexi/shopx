@@ -1,13 +1,11 @@
 package com.mikey.shopx.controller;
 
-import Payload.ApiResponse;
-import Payload.JwtAuthenticationResponse;
-import Payload.LoginRequest;
-import Payload.SignUpRequest;
+import com.mikey.shopx.Payload.ApiResponse;
+import com.mikey.shopx.Payload.JwtAuthenticationResponse;
+import com.mikey.shopx.Payload.LoginRequest;
+import com.mikey.shopx.Payload.SignUpRequest;
 import com.mikey.shopx.Security.JwtTokenProvider;
-import com.mikey.shopx.exception.AppException;
 import com.mikey.shopx.model.Role;
-import com.mikey.shopx.model.RoleName;
 import com.mikey.shopx.model.User;
 import com.mikey.shopx.repository.RoleRepo;
 import com.mikey.shopx.repository.UserRepo;
@@ -76,10 +74,14 @@ public class AuthController {
         userRole.setName("USER_ROLE");
         roleRepo.save(userRole);
         user.setRoles(Collections.singleton(userRole));
-        User result = userRepo.save(user);
+//        Customer customer = new Customer();
+//        customer.setUser(user);
+//        CustomerService customerService = new CustomerService();
+//        customerService.addCustomer(customer);
+        userRepo.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(result.getUserName()).toUri();
+                .buildAndExpand(user.getUserName()).toUri();
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
 }

@@ -9,6 +9,7 @@ import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -26,9 +27,13 @@ public class CustomerService {
     @Autowired
     UserRepo userRepo;
     public String addCustomer(Customer customer) {
+        User user = customer.getUser();
+
         Role role = new Role();
         role.setName("ROLE_USER");
-        role.setEmail(customer.getUser().getEmail());
+        role.setEmail(user.getEmail());
+
+        user.setRoles(Collections.singleton(role));
 
         Cart cart = new Cart();
         cart.setCustomer(customer);
@@ -37,10 +42,14 @@ public class CustomerService {
         customerRepo.save(customer);
         cartRepo.save(cart);
         roleRepo.save(role);
+        userRepo.save(user);
         return "Customer successfully added";
     }
 
     public Customer getCustomerByUsername(String userName) {
+        if(!userRepo.existsByUserName(userName)) {
+            return null;
+        }
         User user = userRepo.findByUserName(userName);
         Customer customer = customerRepo.getCustomerByUser(user);
         return customer;
@@ -52,9 +61,4 @@ public class CustomerService {
         return customer;
     }
 
-    public Customer getCustomerByUserNameOrEmail(String userName, String email) {
-        User user = userRepo.findByUserNameOrEmail(userName, email);
-        Customer customer = customerRepo.getCustomerByUser(user);
-        return customer;
-    }
 }

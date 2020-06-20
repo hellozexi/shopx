@@ -1,4 +1,4 @@
-package Payload;
+package com.mikey.shopx.Payload;
 
 import javax.validation.constraints.NotBlank;
 

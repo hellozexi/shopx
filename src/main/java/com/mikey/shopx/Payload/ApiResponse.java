@@ -1,4 +1,4 @@
-package Payload;
+package com.mikey.shopx.Payload;
 
 public class ApiResponse {
     private boolean success;
