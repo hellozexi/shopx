@@ -3,6 +3,7 @@
 # Milestone
 - [x] p1 | Finish the data schema part and build the related ecommerce database. 
 - [x] p1 | Finish the user login/registration. Spring security might be helpful. Finish the authentication part.
+- [x] p1 | User can create their profile. And user can modify their profile.
 - [ ] p1 | Design all the routers for the app. Finish authoriazation part of project. 
 - [ ] p1 | List all the items on the main page. User can add some items into their cart.
 - [ ] p1 | User can checkout their cart. Items will be listed in their cart. When checking out, they need to provide their information.
