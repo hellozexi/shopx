@@ -19,9 +19,8 @@
 - [ ] p3 | Deploy the website and try to make it into production.
 
 
-# Authentication Backend
-Download Postman on your local machine. Send POST requests to both URIs
-## Signin /api/auth/signin  
+# Authentication API
+## Signin /api/auth/signin (POST)  
 ### request body
 ```
 {  
@@ -29,7 +28,7 @@ Download Postman on your local machine. Send POST requests to both URIs
   "password": "123456"  
 }  
 ```  
-## Signup /api/auth/signup  
+## Signup /api/auth/signup (POST)  
 ### request body
 ```
 {  
@@ -38,9 +37,23 @@ Download Postman on your local machine. Send POST requests to both URIs
   "password": "123456"  
 }  
 ```
-if successful, you will see response correct on your postman.  
 
-# Front end 
-I also used React as our front-end framework. The files are located at /webapp. You can check out how to set up your front-end  
-environment through README.md in that folder. Basicly you need to install node.js on your local machine. [needs to be done]
-
+# Add/Update Customer Information API
+## /api/customer/update (POST)  
+### request body
+```
+{
+  "firstName": "Mik",
+	"lastName": "Liu",
+	"customerPhone": "3146855203",
+	"billingAddress" : "5941 KingsBury Ave",
+	"billingCity": "Saint Louis",
+	"billingState": "MO",
+	"billingZipCode": "63113",
+	"billingCountry": "USA",
+	"shippingAddress" : "Leland Ave 811",
+	"shippingCity": "Saint Louis",
+	"shippingState": "MO",
+	"shippingZipCode": "63112",
+	"shippingCountry": "USA"
+}
