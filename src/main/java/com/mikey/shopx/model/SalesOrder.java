@@ -11,7 +11,7 @@ public class SalesOrder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     @OneToOne
     private Cart cart;
@@ -25,11 +25,11 @@ public class SalesOrder implements Serializable {
     @OneToOne
     BillingAddress billingAddress;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

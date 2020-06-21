@@ -10,7 +10,7 @@ public class Role implements Serializable {
     private static final long serialVersionUID = 190992383010323519L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String email;
 
     public String getEmail() {
@@ -23,7 +23,7 @@ public class Role implements Serializable {
 
     private String name;
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -35,7 +35,7 @@ public class Role implements Serializable {
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 }

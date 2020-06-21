@@ -13,7 +13,7 @@ public class Customer implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String firstName;
     private String lastName;
@@ -35,11 +35,11 @@ public class Customer implements Serializable{
     @JoinColumn(name = "cartId")
     private Cart cart;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -11,13 +11,25 @@ public class ShippingAddress implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String address;
     private String city;
     private String state;
     private String zipCode;
     private String country;
+
+    public ShippingAddress() {
+    }
+
+    public ShippingAddress(String address, String city, String state, String zipCode, String country, Customer customer) {
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.country = country;
+        this.customer = customer;
+    }
 
     @OneToOne(mappedBy = "shippingAddress")
     private Customer customer;
@@ -30,11 +42,11 @@ public class ShippingAddress implements Serializable {
         this.customer = customer;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

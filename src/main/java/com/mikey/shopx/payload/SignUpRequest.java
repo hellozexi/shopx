@@ -1,4 +1,4 @@
-package com.mikey.shopx.Payload;
+package com.mikey.shopx.payload;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

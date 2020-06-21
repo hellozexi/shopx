@@ -13,7 +13,7 @@ public class CartItem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private int quantity;
     private int price;
@@ -25,11 +25,11 @@ public class CartItem implements Serializable {
     @OneToOne
     private Product product;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

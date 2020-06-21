@@ -1,9 +1,9 @@
 package com.mikey.shopx.controller;
 
-import com.mikey.shopx.Payload.ApiResponse;
-import com.mikey.shopx.Payload.JwtAuthenticationResponse;
-import com.mikey.shopx.Payload.LoginRequest;
-import com.mikey.shopx.Payload.SignUpRequest;
+import com.mikey.shopx.payload.ApiResponse;
+import com.mikey.shopx.payload.JwtAuthenticationResponse;
+import com.mikey.shopx.payload.LoginRequest;
+import com.mikey.shopx.payload.SignUpRequest;
 import com.mikey.shopx.Security.JwtTokenProvider;
 import com.mikey.shopx.model.Role;
 import com.mikey.shopx.model.User;
