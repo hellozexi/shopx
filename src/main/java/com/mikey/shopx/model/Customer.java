@@ -5,6 +5,8 @@ import org.hibernate.annotations.Fetch;
 import javax.mail.Address;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable{
@@ -34,6 +36,17 @@ public class Customer implements Serializable{
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cartId")
     private Cart cart;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public Long getId() {
         return id;

@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
 
     private String name;
     private String description;
@@ -15,6 +15,9 @@ public class Product implements Serializable {
     private String manufacturer;
     private int price;
     private int unit;
+
+    @ManyToOne
+    Customer customer;
 
     @OneToOne
     CartItem cartItem;
@@ -64,11 +67,11 @@ public class Product implements Serializable {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public void setUnit(int unit) {
@@ -81,5 +84,13 @@ public class Product implements Serializable {
 
     public void setCartItem(CartItem cartItem) {
         this.cartItem = cartItem;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
