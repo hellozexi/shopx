@@ -57,3 +57,18 @@
 	"shippingZipCode": "63112",
 	"shippingCountry": "USA"
 }
+```
+
+
+# Add Product API
+## /api/product/add (POST)  
+### request body
+```
+{
+	"name": "macbook",
+	"category": "computer",
+	"description": "This is a brand new mac",
+	"price": 500,
+	"unit": 1
+}
+```
