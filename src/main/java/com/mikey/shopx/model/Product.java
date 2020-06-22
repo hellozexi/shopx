@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private Long Id;
 
     private String name;
     private String description;
@@ -61,6 +61,14 @@ public class Product implements Serializable {
 
     public int getUnit() {
         return unit;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public void setUnit(int unit) {
