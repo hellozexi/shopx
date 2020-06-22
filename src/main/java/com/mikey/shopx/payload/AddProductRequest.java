@@ -10,8 +10,6 @@ public class AddProductRequest {
     @NotBlank
     private String category;
     @NotBlank
-    private String manufacturer;
-    @NotBlank
     private int price;
     @NotBlank
     private int unit;
@@ -40,13 +38,7 @@ public class AddProductRequest {
         this.category = category;
     }
 
-    public String getManufacturer() {
-        return manufacturer;
-    }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
 
     public int getPrice() {
         return price;

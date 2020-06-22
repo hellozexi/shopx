@@ -12,7 +12,6 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private String category;
-    private String manufacturer;
     private int price;
     private int unit;
 
@@ -44,14 +43,6 @@ public class Product implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     public int getPrice() {
