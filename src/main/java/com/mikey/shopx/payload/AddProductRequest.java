@@ -1,6 +1,7 @@
 package com.mikey.shopx.payload;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AddProductRequest {
     @NotBlank
@@ -9,9 +10,9 @@ public class AddProductRequest {
     private String description;
     @NotBlank
     private String category;
-    @NotBlank
+    @NotNull
     private int price;
-    @NotBlank
+    @NotNull
     private int unit;
 
     public String getName() {
