@@ -1,6 +1,7 @@
 package com.mikey.shopx.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import net.minidev.json.JSONObject;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
@@ -24,6 +25,16 @@ public class Product implements Serializable {
 
     @OneToOne
     CartItem cartItem;
+
+    public JSONObject toJSONObject() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", this.getName());
+        jsonObject.put("description", this.getDescription());
+        jsonObject.put("category", this.getCategory());
+        jsonObject.put("price", this.getPrice());
+        jsonObject.put("unit", this.getUnit());
+        return jsonObject;
+    }
 
     public String getName() {
         return name;

@@ -1,20 +1,20 @@
 package com.mikey.shopx.controller;
 
 import com.mikey.shopx.Security.JwtAuthenticationEntryPoint;
-import com.mikey.shopx.model.BillingAddress;
-import com.mikey.shopx.model.ShippingAddress;
-import com.mikey.shopx.model.User;
+import com.mikey.shopx.model.*;
 import com.mikey.shopx.payload.AddCustomerRequest;
 import com.mikey.shopx.Security.CurrentUser;
 import com.mikey.shopx.Security.UserPrincipal;
-import com.mikey.shopx.model.Customer;
 import com.mikey.shopx.repository.CustomerRepo;
 import com.mikey.shopx.repository.UserRepo;
 import com.mikey.shopx.service.CustomerService;
+import com.mikey.shopx.service.ProductService;
 import com.mikey.shopx.service.UserService;
+import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -23,6 +23,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/api/customer")
@@ -33,6 +35,8 @@ public class CustomerController {
     UserService userService;
 
     @Autowired
+    ProductService productService;
+    @Autowired
     UserRepo userRepo;
 
     @Autowired
@@ -40,6 +44,29 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
+
+    @GetMapping("getallproducts")
+    @ResponseBody
+    public ResponseEntity<?> getAllProducts() {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = auth.getName();
+            //String currentUserName = userPrincipal.getUsername();
+            User currentUser = userRepo.findByUserName(currentUserName);
+
+            Customer customer = customerService.getCustomerByUsername(currentUserName);
+
+            List<JSONObject> res = new ArrayList<>();
+            List<Product> products = productService.getAllProductByCustomer(customer);
+            for(Product product: products) {
+                JSONObject jsonObject = product.toJSONObject();
+                res.add(jsonObject);
+            }
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("something wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @PostMapping("update")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody AddCustomerRequest addCustomerRequest) {
         try {

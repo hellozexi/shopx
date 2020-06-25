@@ -1,6 +1,7 @@
 package com.mikey.shopx.service;
 
 import com.mikey.shopx.Security.JwtTokenProvider;
+import com.mikey.shopx.model.Customer;
 import com.mikey.shopx.model.Product;
 import com.mikey.shopx.repository.ProductRepo;
 import org.slf4j.Logger;
@@ -55,5 +56,14 @@ public class ProductService {
         return null;
     }
 
+    public List<Product> getAllProductByCustomer(Customer customer) {
+        try {
+            List<Product> products = productRepo.findAllByCustomer(customer);
+            return products;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return null;
+    }
 
 }

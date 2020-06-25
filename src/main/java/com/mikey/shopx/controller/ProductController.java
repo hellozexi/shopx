@@ -67,12 +67,7 @@ public class ProductController {
         List<JSONObject> res = new ArrayList<>();
         List<Product> products = productService.getAllProducts();
         for(Product product: products) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("name", product.getName());
-            jsonObject.put("description", product.getDescription());
-            jsonObject.put("category", product.getCategory());
-            jsonObject.put("price", product.getPrice());
-            jsonObject.put("unit", product.getUnit());
+            JSONObject jsonObject = product.toJSONObject();
             jsonObject.put("provider", product.getCustomer().getUser().getUserName());
             res.add(jsonObject);
         }
