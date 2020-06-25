@@ -43,7 +43,7 @@
 ### request body
 ```
 {
-  "firstName": "Mik",
+  	"firstName": "Mik",
 	"lastName": "Liu",
 	"customerPhone": "3146855203",
 	"billingAddress" : "5941 KingsBury Ave",
