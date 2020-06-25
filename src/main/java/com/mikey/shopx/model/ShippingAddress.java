@@ -1,5 +1,8 @@
 package com.mikey.shopx.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -32,6 +35,7 @@ public class ShippingAddress implements Serializable {
     }
 
     @OneToOne(mappedBy = "shippingAddress")
+    //@JsonManagedReference
     private Customer customer;
 
     public Customer getCustomer() {

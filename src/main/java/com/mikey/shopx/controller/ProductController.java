@@ -7,17 +7,19 @@ import com.mikey.shopx.payload.AddProductRequest;
 import com.mikey.shopx.repository.ProductRepo;
 import com.mikey.shopx.repository.UserRepo;
 import com.mikey.shopx.service.ProductService;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/api/product")
@@ -57,5 +59,23 @@ public class ProductController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("getall")
+    @ResponseBody
+    public ResponseEntity<?> getProducts() {
+        List<JSONObject> res = new ArrayList<>();
+        List<Product> products = productService.getAllProducts();
+        for(Product product: products) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("name", product.getName());
+            jsonObject.put("description", product.getDescription());
+            jsonObject.put("category", product.getCategory());
+            jsonObject.put("price", product.getPrice());
+            jsonObject.put("unit", product.getUnit());
+            jsonObject.put("provider", product.getCustomer().getUser().getUserName());
+            res.add(jsonObject);
+        }
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 }

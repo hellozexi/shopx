@@ -1,5 +1,6 @@
 package com.mikey.shopx.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;

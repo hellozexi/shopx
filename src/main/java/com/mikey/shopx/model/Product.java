@@ -1,5 +1,8 @@
 package com.mikey.shopx.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
@@ -15,6 +18,7 @@ public class Product implements Serializable {
     private int price;
     private int unit;
 
+    @JsonBackReference
     @ManyToOne
     Customer customer;
 
