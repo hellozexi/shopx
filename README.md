@@ -72,3 +72,30 @@
 	"unit": 1
 }
 ```
+
+
+# View all products API
+## /api/product/getall (GET)  
+### response body
+```
+[
+    {
+        "unit": 1,
+        "provider": "mikeliu",
+        "price": 500,
+        "name": "macbook",
+        "description": "This is a brand new mac",
+        "category": "computer"
+    },
+    {
+        "unit": 1,
+        "provider": "mikeliu",
+        "price": 500,
+        "name": "macbook2",
+        "description": "This is a brand new mac",
+        "category": "computer"
+    }
+]
+```
+
+
