@@ -69,15 +69,6 @@ public class AuthController {
         }
         User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(), signUpRequest.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role userRole = new Role();
-        userRole.setEmail(signUpRequest.getEmail());
-        userRole.setName("USER_ROLE");
-        roleRepo.save(userRole);
-        user.setRoles(Collections.singleton(userRole));
-//        Customer customer = new Customer();
-//        customer.setUser(user);
-//        CustomerService customerService = new CustomerService();
-//        customerService.addCustomer(customer);
         userRepo.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
