@@ -67,6 +67,16 @@ public class CustomerController {
             return new ResponseEntity<>("something wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @DeleteMapping("delete/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
+        try {
+            productService.deleteProduct(productId);
+            return new ResponseEntity<>("delete" + productId, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("can't delete", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     @PostMapping("update")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody AddCustomerRequest addCustomerRequest) {
         try {
