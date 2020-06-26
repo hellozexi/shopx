@@ -98,4 +98,24 @@
 ]
 ```
 
-
+# View all products from current user API
+## /api/customer/getallproducts (GET)  
+### response body
+```
+[
+    {
+        "unit": 1,
+        "price": 500,
+        "name": "macbook",
+        "description": "This is a brand new mac",
+        "category": "computer"
+    },
+    {
+        "unit": 1,
+        "price": 500,
+        "name": "macbook2",
+        "description": "This is a brand new mac",
+        "category": "computer"
+    }
+]
+```
