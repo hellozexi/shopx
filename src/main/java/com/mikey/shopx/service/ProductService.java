@@ -66,4 +66,14 @@ public class ProductService {
         return null;
     }
 
+    public Product getProductById(Long productId) {
+        try {
+            Product product = productRepo.getProductById(productId);
+            return product;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return null;
+    }
+
 }
