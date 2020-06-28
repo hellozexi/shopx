@@ -56,6 +56,9 @@ public class CartItemController {
                         cartItem.setQuantity(cartItem.getQuantity() + 1);
                         cartItem.setPrice(cartItem.getQuantity() * cartItem.getProduct().getPrice());
                         cartItemService.addCartItem(cartItem);
+                        return new ResponseEntity<>("cart item " + productId + "updated successfully", HttpStatus.OK);
+                    } else {
+                        return new ResponseEntity<>("quantity exceed the maximum volume", HttpStatus.INTERNAL_SERVER_ERROR);
                     }
                 }
             }
