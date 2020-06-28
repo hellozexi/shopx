@@ -119,3 +119,10 @@
     }
 ]
 ```
+
+# Delete a product by productid
+## /api/customer/delete/{productid}
+### response body if delete successfully
+```
+delete: {productid}
+```
