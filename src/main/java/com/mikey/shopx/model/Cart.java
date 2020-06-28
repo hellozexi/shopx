@@ -25,7 +25,7 @@ public class Cart implements Serializable {
     }
 
     @OneToMany(mappedBy = "cart")
-    private List<CartItem> cartItem;
+    private List<CartItem> cartItems;
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
@@ -47,5 +47,13 @@ public class Cart implements Serializable {
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItem) {
+        this.cartItems = cartItem;
     }
 }
