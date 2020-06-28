@@ -33,14 +33,14 @@ public class CartItemController {
     CustomerService customerService;
 
     @Autowired
+    CartService cartService;
+    @Autowired
     CartItemService cartItemService;
     @PostMapping("/add/{productId}")
     public ResponseEntity<?> addCartItem(@PathVariable Long productId) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String currentUserName = auth.getName();
-            //String currentUserName = userPrincipal.getUsername();
-            //User currentUser = userRepo.findByUserName(currentUserName);
 
             Customer customer = customerService.getCustomerByUsername(currentUserName);
 
@@ -56,6 +56,8 @@ public class CartItemController {
                         cartItem.setQuantity(cartItem.getQuantity() + 1);
                         cartItem.setPrice(cartItem.getQuantity() * cartItem.getProduct().getPrice());
                         cartItemService.addCartItem(cartItem);
+                        cart.setTotalPrice(cart.getTotalPrice() + product.getPrice());
+                        cartService.updateCart(cart);
                         return new ResponseEntity<>("cart item " + productId + "updated successfully", HttpStatus.OK);
                     } else {
                         return new ResponseEntity<>("quantity exceed the maximum volume", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -68,6 +70,8 @@ public class CartItemController {
             cartItem.setCart(cart);
             cartItem.setProduct(product);
             cartItemService.addCartItem(cartItem);
+            cart.setTotalPrice(cart.getTotalPrice() + product.getPrice());
+            cartService.updateCart(cart);
             return new ResponseEntity<>("add cart item successfully to " + currentUserName + " 's cart", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
