@@ -117,4 +117,30 @@ public class CartItemController {
         }
 
     }
+    @PostMapping("/delete/{cartItemId}")
+    public ResponseEntity<?> deleteCartItem(@PathVariable Long cartItemId) {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = auth.getName();
+
+            Customer customer = customerService.getCustomerByUsername(currentUserName);
+            Cart cart = customer.getCart();
+            CartItem cartItem = cartItemService.getCartItemById(cartItemId);
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            if(cartItem.getQuantity() == 0) {
+                cartItemService.deleteCartItem(cartItem);
+            } else {
+                cartItem.setPrice(cartItem.getProduct().getPrice() * cartItem.getQuantity());
+                cartItemService.addCartItem(cartItem);
+
+            }
+            cart.setTotalPrice(cart.getTotalPrice() - cartItem.getProduct().getPrice());
+            cartService.updateCart(cart);
+            return new ResponseEntity<>("cartItem: " + cartItemId + " deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
 }

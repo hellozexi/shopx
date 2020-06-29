@@ -24,8 +24,18 @@ public class CartItemService {
         try {
             cartItemRepo.save(cartItem);
         } catch (Exception e) {
-            logger.error(String.valueOf(e));
+            logger.error(e.getMessage());
         }
+    }
+
+    public CartItem getCartItemById(Long cartItemId) {
+        try {
+            CartItem cartItem = cartItemRepo.getCartItemById(cartItemId);
+            return cartItem;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return null;
     }
 
     public void deleteCartItem(CartItem cartItem) {
