@@ -6,7 +6,7 @@
 - [x] p1 | User can create their profile. And user can modify their profile.
 - [x] p1 | Design all the routers for the app. Finish authoriazation part of project. 
 - [x] p1 | List all the items on the main page. User can add some items into their cart.
-- [ ] p1 | User can checkout their cart. Items will be listed in their cart. When checking out, they need to provide their information.
+- [x] p1 | User can checkout their cart. Items will be listed in their cart. When checking out, they need to provide their information.
 - [x] p1 | User can post their product onto this website. Including some information of the product. eg. The description and the image...
 - [ ] p2 | Set up a chat service for owner and customer to communicate with each other.
 - [ ] p2 | Using react to build the front end webpage.
@@ -99,7 +99,7 @@
 ```
 
 # View all products from current user API
-## /api/customer/getallproducts (GET)  
+## /api/product/getAllFromCurrentUser (GET)  
 ### response body
 ```
 [
@@ -120,9 +120,28 @@
 ]
 ```
 
-# Delete a product by productid
-## /api/customer/delete/{productid}
+# Delete a product by productid API
+## /api/product/delete/{productid} (DELETE)  
 ### response body if delete successfully
 ```
 delete: {productid}
 ```
+
+# Add a product to cart API
+## /api/cart/add/{productId} (POST)  
+
+
+# Remove a product from cart API
+## /api/cart/delete/{cartItemId} (POST)  
+
+
+# Show all cartItems of current user API
+## /api/cart/getItems (GET)  
+
+
+# Show current user's cart's total price
+## /api/cart/getPrice (GET)  
+
+
+
+
