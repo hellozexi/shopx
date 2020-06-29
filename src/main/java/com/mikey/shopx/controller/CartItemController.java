@@ -36,7 +36,22 @@ public class CartItemController {
     @Autowired
     CartItemService cartItemService;
 
-    @GetMapping("getitems")
+    @GetMapping("getPrice")
+    public ResponseEntity<?> totalPrice() {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = auth.getName();
+
+            Customer customer = customerService.getCustomerByUsername(currentUserName);
+            int price = customer.getCart().getTotalPrice();
+            JSONObject res  = new JSONObject();
+            res.put("price", price);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
+    }
+    @GetMapping("getItems")
     public ResponseEntity<?> getCartItems() {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
