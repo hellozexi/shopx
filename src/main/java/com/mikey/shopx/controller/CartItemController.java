@@ -7,16 +7,15 @@ import com.mikey.shopx.service.CartItemService;
 import com.mikey.shopx.service.CartService;
 import com.mikey.shopx.service.CustomerService;
 import com.mikey.shopx.service.ProductService;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,6 +35,31 @@ public class CartItemController {
     CartService cartService;
     @Autowired
     CartItemService cartItemService;
+
+    @GetMapping("getitems")
+    public ResponseEntity<?> getCartItems() {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = auth.getName();
+
+            Customer customer = customerService.getCustomerByUsername(currentUserName);
+
+            Cart cart = customer.getCart();
+            List<CartItem> cartItems = cart.getCartItems();
+            List<JSONObject> objects = new ArrayList<>();
+            for(CartItem cartItem: cartItems) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("name", cartItem.getProduct().getName());
+                jsonObject.put("quantity", cartItem.getQuantity());
+                jsonObject.put("id", cartItem.getId());
+                objects.add(jsonObject);
+            }
+            return new ResponseEntity<>(objects, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @PostMapping("/add/{productId}")
     public ResponseEntity<?> addCartItem(@PathVariable Long productId) {
         try {
