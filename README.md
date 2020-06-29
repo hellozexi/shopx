@@ -99,7 +99,7 @@
 ```
 
 # View all products from current user API
-## /api/customer/getallproducts (GET)  
+## /api/product/getAllFromCurrentUser (GET)  
 ### response body
 ```
 [
@@ -121,7 +121,7 @@
 ```
 
 # Delete a product by productid
-## /api/customer/delete/{productid}
+## /api/product/delete/{productid}
 ### response body if delete successfully
 ```
 delete: {productid}
