@@ -120,9 +120,28 @@
 ]
 ```
 
-# Delete a product by productid
-## /api/product/delete/{productid}
+# Delete a product by productid API
+## /api/product/delete/{productid} (DELETE)  
 ### response body if delete successfully
 ```
 delete: {productid}
 ```
+
+# Add a product to cart API
+## /api/cart/add/{productId} (POST)  
+
+
+# Remove a product from cart API
+## /api/cart/delete/{cartItemId} (POST)  
+
+
+# Show all cartItems of current user API
+## /api/cart/getItems (GET)  
+
+
+# Show current user's cart's total price
+## /api/cart/getPrice (GET)  
+
+
+
+
