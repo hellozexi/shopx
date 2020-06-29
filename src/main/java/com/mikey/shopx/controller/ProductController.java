@@ -6,6 +6,7 @@ import com.mikey.shopx.model.User;
 import com.mikey.shopx.payload.AddProductRequest;
 import com.mikey.shopx.repository.ProductRepo;
 import com.mikey.shopx.repository.UserRepo;
+import com.mikey.shopx.service.CustomerService;
 import com.mikey.shopx.service.ProductService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    CustomerService customerService;
+
+
     @PostMapping("add")
     public ResponseEntity<?> addProduct(@Valid @RequestBody AddProductRequest addProductRequest) {
         try {
@@ -61,7 +67,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("getall")
+    @GetMapping("getAll")
     @ResponseBody
     public ResponseEntity<?> getProducts() {
         List<JSONObject> res = new ArrayList<>();
@@ -72,5 +78,37 @@ public class ProductController {
             res.add(jsonObject);
         }
         return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("getAllFromCurrentUser")
+    @ResponseBody
+    public ResponseEntity<?> getAllProducts() {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = auth.getName();
+            //String currentUserName = userPrincipal.getUsername();
+            User currentUser = userRepo.findByUserName(currentUserName);
+
+            Customer customer = customerService.getCustomerByUsername(currentUserName);
+
+            List<JSONObject> res = new ArrayList<>();
+            List<Product> products = productService.getAllProductByCustomer(customer);
+            for(Product product: products) {
+                JSONObject jsonObject = product.toJSONObject();
+                res.add(jsonObject);
+            }
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("something wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping("delete/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
+        try {
+            productService.deleteProduct(productId);
+            return new ResponseEntity<>("delete: " + productId, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("can't delete", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

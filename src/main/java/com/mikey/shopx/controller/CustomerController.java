@@ -45,38 +45,6 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @GetMapping("getallproducts")
-    @ResponseBody
-    public ResponseEntity<?> getAllProducts() {
-        try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
-            //String currentUserName = userPrincipal.getUsername();
-            User currentUser = userRepo.findByUserName(currentUserName);
-
-            Customer customer = customerService.getCustomerByUsername(currentUserName);
-
-            List<JSONObject> res = new ArrayList<>();
-            List<Product> products = productService.getAllProductByCustomer(customer);
-            for(Product product: products) {
-                JSONObject jsonObject = product.toJSONObject();
-                res.add(jsonObject);
-            }
-            return new ResponseEntity<>(res, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("something wrong", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @DeleteMapping("delete/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
-        try {
-            productService.deleteProduct(productId);
-            return new ResponseEntity<>("delete: " + productId, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("can't delete", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 
 
     @PostMapping("update")
@@ -84,7 +52,6 @@ public class CustomerController {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String currentUserName = auth.getName();
-            //String currentUserName = userPrincipal.getUsername();
             User currentUser = userRepo.findByUserName(currentUserName);
 
             Customer customer = customerService.getCustomerByUsername(currentUserName);

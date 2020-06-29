@@ -81,13 +81,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/api/auth/**")
+                .antMatchers("/api/auth/**",
+                        "/api/product/getAll")
                 .permitAll()
-                .antMatchers("/api/product/getall")
-                .permitAll()
-                .antMatchers(HttpMethod.GET, "/api/cart/**").hasAuthority("ROLE_USER")
-                .antMatchers("/api/product/add").hasAuthority("ROLE_USER")
-                .antMatchers("/api/get*/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers(
+                        "/api/cart/**",
+                        "/api/product/getAllFromCurrentUser",
+                        "/api/product/delete*",
+                        "/api/product/add")
+                .hasAuthority("ROLE_USER")
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
