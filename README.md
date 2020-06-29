@@ -20,7 +20,7 @@
 
 
 # Authentication API
-## Signin /api/auth/signin (POST)  
+## Signin /api/auth/signIn (POST)  
 ### request body
 ```
 {  
@@ -28,7 +28,7 @@
   "password": "123456"  
 }  
 ```  
-## Signup /api/auth/signup (POST)  
+## Signup /api/auth/signUp (POST)  
 ### request body
 ```
 {  
