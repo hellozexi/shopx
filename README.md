@@ -120,6 +120,29 @@
 ]
 ```
 
+# View all products from a certain user API
+## /api/product/getAllFromUser/{username} (GET)  
+### response body ({username} = mikeliu)
+```
+[
+    {
+        "unit": 2,
+        "price": 10,
+        "name": "chair",
+        "description": "This is a chair",
+        "category": "furniture"
+    },
+    {
+        "unit": 1,
+        "price": 100,
+        "name": "table",
+        "description": "This is a table",
+        "category": "furniture"
+    }
+]
+```
+
+
 # Delete a product by productid API
 ## /api/product/delete/{productid} (DELETE)  
 ### response body if delete successfully
