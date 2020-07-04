@@ -82,13 +82,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js")
                 .permitAll()
                 .antMatchers("/api/auth/**",
-                        "/api/product/getAll")
+                        "/api/product/getAll",
+                        "/api/product/getAllFromUser/**")
                 .permitAll()
                 .antMatchers(
                         "/api/cart/**",
                         "/api/product/getAllFromCurrentUser",
                         "/api/product/delete*",
-                        "/api/product/add")
+                        "/api/product/add"
+                        )
                 .hasAuthority("ROLE_USER")
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -80,6 +80,23 @@ public class ProductController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    @GetMapping("getAllFromUser/{userName}")
+    @ResponseBody
+    public ResponseEntity<?> getAllProducts(@PathVariable String userName) {
+        try {
+            Customer customer = customerService.getCustomerByUsername(userName);
+            List<JSONObject> res = new ArrayList<>();
+            List<Product> products = productService.getAllProductByCustomer(customer);
+            for(Product product: products) {
+                JSONObject jsonObject = product.toJSONObject();
+                res.add(jsonObject);
+            }
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("something wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("getAllFromCurrentUser")
     @ResponseBody
     public ResponseEntity<?> getAllProducts() {
