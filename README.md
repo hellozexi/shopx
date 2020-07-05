@@ -165,6 +165,15 @@ delete: {productid}
 # Show current user's cart's total price
 ## /api/cart/getPrice (GET)  
 
+# Submit order
+## /api/order/submitOrder (POST)  
+
+# check all the orders sent to producer
+## /api/order/getOrdersFromCustomer (GET)  
+
+# check all the orders reveived by producer  
+## /api/order/getOrderFromProducer (GET)
+
 
 
 
