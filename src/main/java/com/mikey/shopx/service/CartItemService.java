@@ -40,9 +40,9 @@ public class CartItemService {
 
     public void deleteCartItem(CartItem cartItem) {
         try {
-            Cart cart = cartItem.getCart();
-            List<CartItem>  cartItems = cart.getCartItems();
-            cartItems.remove(cartItem);
+//            Cart cart = cartItem.getCart();
+//            List<CartItem>  cartItems = cart.getCartItems();
+//            cartItems.remove(cartItem);
             cartItemRepo.delete(cartItem);
         } catch (Exception e) {
             logger.error(String.valueOf(e));

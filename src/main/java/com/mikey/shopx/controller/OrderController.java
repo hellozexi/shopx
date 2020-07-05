@@ -49,6 +49,9 @@ public class OrderController {
                 salesOrderService.addSalesOrder(salesOrder);
                 cartItemService.deleteCartItem(cartItem);
             }
+            for(CartItem cartItem: cartItems) {
+                System.out.println(cartItem.getProduct().getName() + " /n");
+            }
             return new ResponseEntity<>("create salesOrders successfully", HttpStatus.OK);
             //return new ResponseEntity<>("", HttpStatus.OK);
         } catch (Exception e) {

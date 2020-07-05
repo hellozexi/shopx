@@ -23,8 +23,7 @@ public class Product implements Serializable {
     @ManyToOne
     Customer customer;
 
-    @OneToOne
-    CartItem cartItem;
+
 
     public JSONObject toJSONObject() {
         JSONObject jsonObject = new JSONObject();
@@ -84,13 +83,7 @@ public class Product implements Serializable {
         this.unit = unit;
     }
 
-    public CartItem getCartItem() {
-        return cartItem;
-    }
 
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
-    }
 
     public Customer getCustomer() {
         return customer;
