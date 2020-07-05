@@ -50,11 +50,10 @@ public class CustomerController {
     @PostMapping("update")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody AddCustomerRequest addCustomerRequest) {
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
-            User currentUser = userRepo.findByUserName(currentUserName);
 
-            Customer customer = customerService.getCustomerByUsername(currentUserName);
+            User currentUser = userService.getCurrentUser();
+
+            Customer customer = currentUser.getCustomer();
 
             String billingAdr = addCustomerRequest.getBillingAddress();
             String billingCity = addCustomerRequest.getBillingCity();

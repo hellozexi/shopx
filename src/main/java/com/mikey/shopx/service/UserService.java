@@ -3,6 +3,7 @@ package com.mikey.shopx.service;
 import com.mikey.shopx.model.User;
 import com.mikey.shopx.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -12,22 +13,13 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
+
     public User getCurrentUser() {
-        Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principle instanceof UserDetails) {
-            String userName = ((UserDetails) principle).getUsername();
-            User user = userRepo.findByUserName(userName);
-            return user;
-        }
-        return null;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = auth.getName();
+        //String currentUserName = userPrincipal.getUsername();
+        User currentUser = userRepo.findByUserName(currentUserName);
+        return currentUser;
     }
 
-    public String getCurrentUserName() {
-        if(getCurrentUser() != null) {
-            return getCurrentUser().getUserName();
-        } else {
-            return null;
-        }
-
-    }
 }

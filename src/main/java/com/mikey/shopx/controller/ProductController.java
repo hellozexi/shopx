@@ -8,9 +8,11 @@ import com.mikey.shopx.repository.ProductRepo;
 import com.mikey.shopx.repository.UserRepo;
 import com.mikey.shopx.service.CustomerService;
 import com.mikey.shopx.service.ProductService;
+import com.mikey.shopx.service.UserService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jackson.JsonObjectDeserializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -37,14 +39,13 @@ public class ProductController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    UserService userService;
 
     @PostMapping("add")
     public ResponseEntity<?> addProduct(@Valid @RequestBody AddProductRequest addProductRequest) {
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
-            //String currentUserName = userPrincipal.getUsername();
-            User currentUser = userRepo.findByUserName(currentUserName);
+            User currentUser = userService.getCurrentUser();
             Customer currentCustomer = currentUser.getCustomer();
             Product product = new Product();
 
@@ -101,12 +102,9 @@ public class ProductController {
     @ResponseBody
     public ResponseEntity<?> getAllProducts() {
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
-            //String currentUserName = userPrincipal.getUsername();
-            User currentUser = userRepo.findByUserName(currentUserName);
+            User currentUser = userService.getCurrentUser();
 
-            Customer customer = customerService.getCustomerByUsername(currentUserName);
+            Customer customer = currentUser.getCustomer();
 
             List<JSONObject> res = new ArrayList<>();
             List<Product> products = productService.getAllProductByCustomer(customer);

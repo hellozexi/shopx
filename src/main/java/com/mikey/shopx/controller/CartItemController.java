@@ -3,10 +3,7 @@ package com.mikey.shopx.controller;
 import com.mikey.shopx.model.*;
 import com.mikey.shopx.repository.ProductRepo;
 import com.mikey.shopx.repository.UserRepo;
-import com.mikey.shopx.service.CartItemService;
-import com.mikey.shopx.service.CartService;
-import com.mikey.shopx.service.CustomerService;
-import com.mikey.shopx.service.ProductService;
+import com.mikey.shopx.service.*;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +23,7 @@ public class CartItemController {
     ProductService productService;
 
     @Autowired
-    UserRepo userRepo;
+    UserService userService;
 
     @Autowired
     CustomerService customerService;
@@ -39,10 +36,9 @@ public class CartItemController {
     @GetMapping("getPrice")
     public ResponseEntity<?> totalPrice() {
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
+            User currentUser = userService.getCurrentUser();
+            Customer customer = currentUser.getCustomer();
 
-            Customer customer = customerService.getCustomerByUsername(currentUserName);
             int price = customer.getCart().getTotalPrice();
             JSONObject res  = new JSONObject();
             res.put("price", price);
@@ -54,10 +50,8 @@ public class CartItemController {
     @GetMapping("getItems")
     public ResponseEntity<?> getCartItems() {
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
-
-            Customer customer = customerService.getCustomerByUsername(currentUserName);
+            User currentUser = userService.getCurrentUser();
+            Customer customer = currentUser.getCustomer();
 
             Cart cart = customer.getCart();
             List<CartItem> cartItems = cart.getCartItems();
@@ -78,10 +72,8 @@ public class CartItemController {
     @PostMapping("/add/{productId}")
     public ResponseEntity<?> addCartItem(@PathVariable Long productId) {
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
-
-            Customer customer = customerService.getCustomerByUsername(currentUserName);
+            User currentUser = userService.getCurrentUser();
+            Customer customer = currentUser.getCustomer();
 
             Cart cart = customer.getCart();
             List<CartItem> cartItems = cart.getCartItems();
@@ -111,7 +103,7 @@ public class CartItemController {
             cartItemService.addCartItem(cartItem);
             cart.setTotalPrice(cart.getTotalPrice() + product.getPrice());
             cartService.updateCart(cart);
-            return new ResponseEntity<>("add cart item successfully to " + currentUserName + " 's cart", HttpStatus.OK);
+            return new ResponseEntity<>("add cart item successfully to " + currentUser.getUserName() + " 's cart", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -120,10 +112,9 @@ public class CartItemController {
     @PostMapping("/delete/{cartItemId}")
     public ResponseEntity<?> deleteCartItem(@PathVariable Long cartItemId) {
         try {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = auth.getName();
+            User currentUser = userService.getCurrentUser();
+            Customer customer = currentUser.getCustomer();
 
-            Customer customer = customerService.getCustomerByUsername(currentUserName);
             Cart cart = customer.getCart();
             CartItem cartItem = cartItemService.getCartItemById(cartItemId);
             cartItem.setQuantity(cartItem.getQuantity() - 1);
