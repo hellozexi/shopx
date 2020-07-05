@@ -8,6 +8,7 @@
 - [x] p1 | List all the items on the main page. User can add some items into their cart.
 - [x] p1 | User can checkout their cart. Items will be listed in their cart. When checking out, they need to provide their information.
 - [x] p1 | User can post their product onto this website. Including some information of the product. eg. The description and the image...
+- [x] p1 | User should submit order and producer will receive notifications
 - [ ] p2 | Set up a chat service for owner and customer to communicate with each other.
 - [ ] p2 | Using react to build the front end webpage.
 - [ ] p2 | Enable users to pay online. This part might be interesting.
