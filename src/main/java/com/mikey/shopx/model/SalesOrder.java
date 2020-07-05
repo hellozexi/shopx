@@ -20,7 +20,26 @@ public class SalesOrder implements Serializable {
     Customer customer;
 
     @OneToOne
+    Customer producer;
+
+    public Customer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Customer producer) {
+        this.producer = producer;
+    }
+
+    @OneToOne
     CartItem cartItem;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Cart getCart() {
         return cart;
