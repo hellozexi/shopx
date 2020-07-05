@@ -16,22 +16,11 @@ public class SalesOrder implements Serializable {
     @OneToOne
     private Cart cart;
 
-    @ManyToOne
+    @OneToOne
     Customer customer;
 
     @OneToOne
-    ShippingAddress shippingAddress;
-
-    @OneToOne
-    BillingAddress billingAddress;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    CartItem cartItem;
 
     public Cart getCart() {
         return cart;
@@ -41,27 +30,19 @@ public class SalesOrder implements Serializable {
         this.cart = cart;
     }
 
-    public ShippingAddress getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(ShippingAddress shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public BillingAddress getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public CartItem getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
     }
 }
