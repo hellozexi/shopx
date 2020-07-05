@@ -22,6 +22,9 @@ public class SalesOrder implements Serializable {
     @OneToOne
     Customer producer;
 
+    @OneToOne
+    Product product;
+
     public Customer getProducer() {
         return producer;
     }
@@ -29,9 +32,6 @@ public class SalesOrder implements Serializable {
     public void setProducer(Customer producer) {
         this.producer = producer;
     }
-
-    @OneToOne
-    CartItem cartItem;
 
     public Long getId() {
         return id;
@@ -57,11 +57,11 @@ public class SalesOrder implements Serializable {
         this.customer = customer;
     }
 
-    public CartItem getCartItem() {
-        return cartItem;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
