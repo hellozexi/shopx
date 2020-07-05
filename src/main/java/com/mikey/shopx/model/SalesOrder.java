@@ -12,6 +12,7 @@ public class SalesOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int unit;
 
     @OneToOne
     private Cart cart;
@@ -63,5 +64,13 @@ public class SalesOrder implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
     }
 }
