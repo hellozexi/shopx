@@ -8,11 +8,12 @@
 - [x] p1 | List all the items on the main page. User can add some items into their cart.
 - [x] p1 | User can checkout their cart. Items will be listed in their cart. When checking out, they need to provide their information.
 - [x] p1 | User can post their product onto this website. Including some information of the product. eg. The description and the image...
+- [x] p1 | User should submit order and producer will receive notifications
 - [ ] p2 | Set up a chat service for owner and customer to communicate with each other.
 - [ ] p2 | Using react to build the front end webpage.
-- [ ] p2 | Enable users to pay online. This part might be interesting.
+- [ ] p2 | Enable users to pay online. This part might be interesting.[abort]
 - [ ] p2 | Use docker to store the database and try to find a way to store the prod server and test server into different containers.
-- [ ] p2 | Find a way to record metrics of the websites and write unit tests.
+- [x] p2 | Find a way to record metrics of the websites and write unit tests.
 - [ ] p3 | Try to explore some cool features about React. eg. animation to make website more appealing to customers.
 - [ ] p3 | Enable search engine for the website. eg. Elasticsearch
 - [ ] p3 | Design the recommendation system or algorithm. Based on user's browsing behavior, give him/her related recommendations on product. eg. recommendation algorithms like famous item-item or user-user.
@@ -164,6 +165,15 @@ delete: {productid}
 
 # Show current user's cart's total price
 ## /api/cart/getPrice (GET)  
+
+# Submit order
+## /api/order/submitOrder (POST)  
+
+# check all the orders sent to producer
+## /api/order/getOrdersFromCustomer (GET)  
+
+# check all the orders reveived by producer  
+## /api/order/getOrderFromProducer (GET)
 
 
 
