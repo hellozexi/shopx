@@ -6,6 +6,8 @@ import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -23,6 +25,8 @@ public class Product implements Serializable {
     @ManyToOne
     Customer customer;
 
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "product")
+    List<SalesOrder> salesOrders;
 
 
     public JSONObject toJSONObject() {
@@ -83,7 +87,13 @@ public class Product implements Serializable {
         this.unit = unit;
     }
 
+    public List<SalesOrder> getSalesOrders() {
+        return salesOrders;
+    }
 
+    public void setSalesOrders(List<SalesOrder> salesOrders) {
+        this.salesOrders = salesOrders;
+    }
 
     public Customer getCustomer() {
         return customer;

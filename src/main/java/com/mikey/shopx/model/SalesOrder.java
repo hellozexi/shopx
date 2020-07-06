@@ -23,7 +23,7 @@ public class SalesOrder implements Serializable {
     @OneToOne
     Customer producer;
 
-    @OneToOne
+    @ManyToOne
     Product product;
 
     public Customer getProducer() {
