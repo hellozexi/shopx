@@ -1,5 +1,5 @@
 # DataSchema
-![Data schema](/images/DataSchema.png)
+![Data schema](/images/shopx-erd.png)
 # Milestone
 - [x] p1 | Finish the data schema part and build the related ecommerce database. 
 - [x] p1 | Finish the user login/registration. Spring security might be helpful. Finish the authentication part.
